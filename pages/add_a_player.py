@@ -1,17 +1,17 @@
 from pages.base_page import BasePage
 
 
-class LoginPage(BasePage):
+class AddPlayer(BasePage):
     login_field_xpath = "//*[@id='login']"
     password_field_xpath = "//*[@id='password']"
     sign_in_button_xpath = "//child::div/button/span[1]"
     remind_password_button_xpath = "//*[text()='Remind password']"
-    language_selectMenu_xpath = "//*[text()='English']"
     login_url = 'https://scouts-test.futbolkolektyw.pl/en'
-    expected_title = 'Scouts panel - sign in'
+    add_player_button_xpath = "// child::div[2] // a[1] / button / span[1]"
+    expected_title_player = 'Add player'
+    add_player_url = 'https://scouts-test.futbolkolektyw.pl/en/players/add'
 
 
-    email = "romanpiliai96@gmail.com"
     def type_in_email(self, email):
         self.field_send_keys(self.login_field_xpath, email)
 
@@ -21,6 +21,8 @@ class LoginPage(BasePage):
     def click_sign_button(self):
         self.click_on_the_element(self.sign_in_button_xpath)
 
-    def title_of_page(self):
-        assert self.get_page_title(self.login_url) == self.expected_title
+    def click_add_player_button(self):
+        self.click_on_the_element(self.add_player_button_xpath)
 
+    def title_of_player_page(self):
+        assert self.get_page_title(self.add_player_url) == self.expected_title_player
