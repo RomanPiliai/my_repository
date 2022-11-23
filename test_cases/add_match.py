@@ -6,9 +6,9 @@ from selenium import webdriver
 from pages.dashboard import Dashboard
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from pages.login_page import LoginPage
-from pages.add_a_player import AddPlayer
+from pages.Dashboard_match import Dashboard_match
 
-class TestAddPlayer(unittest.TestCase):
+class TestAddMatch(unittest.TestCase):
 
     @classmethod
     def setUp(self):
@@ -18,18 +18,23 @@ class TestAddPlayer(unittest.TestCase):
         self.driver.fullscreen_window()
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
 
-    def get_page_title(self, url):
-        self.driver.get(url)
-        return self.driver.title
 
-    def test_add_player(self):
+    def test_add_match(self):
         user_login = LoginPage(self.driver)
         user_login.title_of_page()
         user_login.type_in_email('user02@getnada.com')
         user_login.type_in_password('Test-1234')
         user_login.click_sign_button()
-        add_player_page = AddPlayer(self.driver)
-        add_player_page.test_click_add_player_button()
+        add_match_page = Dashboard_match(self.driver)
+        add_match_page.test_last_match()
+        add_match_page.test_matches_button()
+        add_match_page.test_click_add_match_button()
+        add_match_page.test_type_in_my_team()
+        add_match_page.test_type_in_enemy_team()
+        add_match_page.test_type_my_score()
+        add_match_page.test_type_in_enemy_score()
+        add_match_page.test_type_in_date_match()
+        add_match_page.test_click_submit_match_button()
         time.sleep(5)
 
     @classmethod

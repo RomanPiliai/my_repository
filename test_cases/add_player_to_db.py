@@ -8,7 +8,7 @@ from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from pages.login_page import LoginPage
 from pages.add_a_player import AddPlayer
 
-class TestAddPlayer(unittest.TestCase):
+class TestaAddPlayer(unittest.TestCase):
 
     @classmethod
     def setUp(self):
@@ -30,6 +30,11 @@ class TestAddPlayer(unittest.TestCase):
         user_login.click_sign_button()
         add_player_page = AddPlayer(self.driver)
         add_player_page.test_click_add_player_button()
+        add_player_page.test_type_in_name()
+        add_player_page.test_type_in_surname()
+        add_player_page.test_type_in_position()
+        add_player_page.test_type_in_age()
+        add_player_page.test_click_submit_button()
         time.sleep(5)
 
     @classmethod
